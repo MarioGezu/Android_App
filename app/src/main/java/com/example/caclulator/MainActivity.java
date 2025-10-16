@@ -1,37 +1,62 @@
 package com.example.caclulator;
 
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
-    EditText studentDiscounts, travelExpenses, ticketExpenses, numberOfStudents, numberOfGrownUps, houseExpenses;
-    TextView textView, textView2, textView3;
+    private ViewPager2 viewPager;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initialize();
-    }
-    public void initialize(){
-        studentDiscounts = (EditText)findViewById(R.id.studentDiscounts);
-        travelExpenses = (EditText)findViewById(R.id.travelExpenses);
-        ticketExpenses = (EditText)findViewById(R.id.ticketExpenses);
-        numberOfStudents = (EditText)findViewById(R.id.numberOfStudents);
-        numberOfGrownUps = (EditText)findViewById(R.id.numberOfGrownUps);
-        houseExpenses = (EditText)findViewById(R.id.houseExpenses);
-        textView = (TextView)findViewById(R.id.textView);
-        textView2 = (TextView)findViewById(R.id.textView2);
-        textView3 = (TextView)findViewById(R.id.textView3);
+
+        viewPager = findViewById(R.id.viewPager);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+
+        // Set up ViewPager adapter
+        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
+        viewPager.setAdapter(adapter);
+
+        // Bottom navigation item clicks
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.nav_fieldtrip) {
+                viewPager.setCurrentItem(0);
+                return true;
+            } else if (item.getItemId() == R.id.nav_expenses) {
+                viewPager.setCurrentItem(1);
+                return true;
+            } else if (item.getItemId() == R.id.nav_analysis) {
+                viewPager.setCurrentItem(2);
+                return true;
+            }
+            return false;
+        });
+
+        // Sync bottom navigation when swiping
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                switch (position) {
+                    case 0:
+                        bottomNavigationView.setSelectedItemId(R.id.nav_fieldtrip);
+                        break;
+                    case 1:
+                        bottomNavigationView.setSelectedItemId(R.id.nav_expenses);
+                        break;
+                    case 2:
+                        bottomNavigationView.setSelectedItemId(R.id.nav_analysis);
+                        break;
+                }
+            }
+        });
     }
 }
-
