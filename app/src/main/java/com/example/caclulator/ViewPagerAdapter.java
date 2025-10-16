@@ -18,7 +18,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
             case 0:
                 return new FieldTripFragment();
             case 1:
-                return new ExpensesFragment();
+                return new ExpenseFragment();
             default:
                 return new FieldTripFragment();
         }

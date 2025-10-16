@@ -2,4 +2,20 @@
     <string name="app_name">Caclulator</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="analysis">Analysis</string>
+    <string name="expenses">Expenses</string>
+    <string name="field_trip">Field Trip</string>
+    <string name="field_trip_details">Field Trip Details</string>
+    <string name="number_of_students">Number of Students</string>
+    <string name="number_of_teachers">Number of Teachers</string>
+    <string name="date_of_trip">Date of Trip</string>
+    <string name="days_left">Days Left: -</string>
+    <string name="total_people">Total People: -</string>
+    <string name="total_cost_0_00">Total Cost: $0.00</string>
+    <string name="add_expense">Add Expense</string>
+    <string-array name="expense_types">
+        <item>Travel</item>
+        <item>Accommodation</item>
+        <item>Tickets</item>
+    </string-array>
 </resources>

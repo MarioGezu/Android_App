@@ -130,33 +130,5 @@ public class FieldTripFragment extends Fragment {
     }
 
     private void calculateTrip() {
-        int students = 0;
-        int teachers = 0;
-
-        try {
-            students = Integer.parseInt(studentsInput.getText().toString());
-        } catch (NumberFormatException ignored) {}
-
-        try {
-            teachers = Integer.parseInt(teachersInput.getText().toString());
-        } catch (NumberFormatException ignored) {}
-
-        int totalPeople = students + teachers;
-        totalPeopleText.setText("Total People: " + totalPeople);
-
-        // Example cost: $20 per person
-        double totalCost = totalPeople * 20.0;
-        totalCostText.setText(String.format(Locale.getDefault(), "Total Cost: $%.2f", totalCost));
-
-        // Days left
-        long diff = selectedDate.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
-        long daysLeft = TimeUnit.MILLISECONDS.toDays(diff);
-        if (daysLeft >= 0) {
-            daysLeftText.setText("Days Left: " + daysLeft);
-        } else {
-            daysLeftText.setText("Trip date passed");
-        }
-
-        Toast.makeText(getContext(), "Trip info updated", Toast.LENGTH_SHORT).show();
     }
 }

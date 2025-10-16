@@ -1,13 +1,10 @@
 package com.example.caclulator;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager2 viewPager;
