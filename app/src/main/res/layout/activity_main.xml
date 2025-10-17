@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/inputTeacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/outputSummary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/placeholderTeacher"
+        app:layout_constraintTop_toBottomOf="@+id/inputStudent" />
+
+    <TextView
+        android:id="@+id/placeholderSummery"
+        android:layout_width="145dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="76dp"
+        android:gravity="left|center_vertical"
+        android:text="Összlétszám"
+        app:layout_constraintBottom_toTopOf="@+id/subTitle2"
+        app:layout_constraintEnd_toStartOf="@+id/outputSummary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placeholderTeacher" />
+
+    <TextView
+        android:id="@+id/subTitle"
+        android:layout_width="184dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="207dp"
+        android:layout_marginBottom="716dp"
+        android:gravity="left|center_vertical"
+        android:text="Létszámok"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/placeholderStudent"
+        android:layout_width="145dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="203dp"
+        android:layout_marginBottom="643dp"
+        android:gravity="left|center_vertical"
+        android:text="Diákok Száma"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/inputStudent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/placeholderTeacher"
+        android:layout_width="145dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:gravity="left|center_vertical"
+        android:text="Tanárok Száma"
+        app:layout_constraintEnd_toStartOf="@+id/inputTeacher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placeholderStudent" />
+
+    <TextView
+        android:id="@+id/outputSummary"
+        android:layout_width="211dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="76dp"
+        android:gravity="center"
+        android:text="N/A"
+        app:layout_constraintBottom_toTopOf="@+id/subTitle2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/placeholderSummery"
+        app:layout_constraintTop_toBottomOf="@+id/inputTeacher" />
+
+    <EditText
+        android:id="@+id/inputStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputTeacher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/placeholderStudent"
+        app:layout_constraintTop_toBottomOf="@+id/subTitle" />
+
+    <TextView
+        android:id="@+id/outputFundPerPerson"
+        android:layout_width="211dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="59dp"
+        android:gravity="center"
+        android:text="N/A"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/placeholderFundsPerPerson"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber3" />
+
+    <EditText
+        android:id="@+id/inputRemainingMonths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumber3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/placeholderRemainingMonths"
+        app:layout_constraintTop_toBottomOf="@+id/subTitle2" />
+
+    <TextView
+        android:id="@+id/placeholderFundsPerPerson"
+        android:layout_width="145dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="123dp"
+        android:gravity="left|center_vertical"
+        android:text="Megmaradt Pénz /fő"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/outputFundPerPerson"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placeholderAllFunds" />
+
+    <EditText
+        android:id="@+id/inputAllFunds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/outputFundPerPerson"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/placeholderAllFunds"
+        app:layout_constraintTop_toBottomOf="@+id/inputRemainingMonths" />
+
+    <TextView
+        android:id="@+id/subTitle2"
+        android:layout_width="184dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="211dp"
+        android:layout_marginBottom="48dp"
+        android:gravity="left|center_vertical"
+        android:text="Kirándulás Adatai"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/placeholderRemainingMonths"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placeholderSummery" />
+
+    <TextView
+        android:id="@+id/placeholderAllFunds"
+        android:layout_width="145dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:gravity="left|center_vertical"
+        android:text="Maximum Kiadások"
+        app:layout_constraintBottom_toTopOf="@+id/placeholderFundsPerPerson"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNumber3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placeholderRemainingMonths" />
+
+    <TextView
+        android:id="@+id/placeholderRemainingMonths"
+        android:layout_width="145dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="28dp"
+        android:gravity="left|center_vertical"
+        android:text="Hátralévő Hónapok"
+        app:layout_constraintBottom_toTopOf="@+id/placeholderAllFunds"
+        app:layout_constraintEnd_toStartOf="@+id/inputRemainingMonths"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subTitle2" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="831dp"
+        android:gravity="center"
+        android:text="Kirándulás Tervezés"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Tovább"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
