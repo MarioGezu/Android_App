@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Caclulator</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="analysis">Analysis</string>
     <string name="expenses">Expenses</string>
     <string name="field_trip">Field Trip</string>
@@ -17,6 +16,8 @@
     <string name="cost">Cost</string>
     <string name="discount">Discount</string>
     <string name="discount_with_percentage">Discount %</string>
+    <string name="ticket_name">Ticket name</string>
+    <string name="accommodation">Accommodation</string>
     <string-array name="expense_types">
         <item>Travel</item>
         <item>Accommodation</item>

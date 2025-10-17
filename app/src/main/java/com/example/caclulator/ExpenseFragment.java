@@ -1,5 +1,6 @@
 package com.example.caclulator;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
@@ -73,9 +76,10 @@ public class ExpenseFragment extends Fragment {
         // Keep references to the dynamic views
         final EditText[] nameInput = new EditText[1];
         final EditText[] costInput = new EditText[1];
-
+        final EditText[] discountInput = new EditText[1];
 
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("MissingInflatedId")
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 container.removeAllViews(); // clear previous layout
@@ -98,15 +102,27 @@ public class ExpenseFragment extends Fragment {
                 View dynamicView = inflater.inflate(layoutId, container, false);
                 container.addView(dynamicView);
 
+                CheckBox checkBox = dynamicView.findViewById(R.id.checkboxDiscount);
+                EditText editText = dynamicView.findViewById(R.id.expenseDiscount);
+
+                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        editText.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                        editText.animate().alpha(isChecked ? 1f : 0f).setDuration(200).start();
+                    }
+                });
                 // Find inputs in the newly inflated layout
                 nameInput[0] = dynamicView.findViewById(R.id.expenseNameInput);
 
 
                 if (position == 0) { // transport
+                    discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 } else if (position == 1) { // accommodation
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 } else if (position == 2) { // ticket
+                    discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 }
             }
