@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:layout_height="match_parent">
 
 
     <!-- RecyclerView for expenses -->
@@ -17,15 +15,16 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- Add button -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/expenseRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginHorizontal="30dp"
         android:clipToPadding="false"
         android:padding="16dp"
         android:scrollbars="vertical" />
@@ -34,11 +33,11 @@
         android:id="@+id/addExpenseFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:contentDescription="@string/add_expense"
-        app:srcCompat="@drawable/ic_add"
-        app:backgroundTint="@color/teal_700" />
+        app:backgroundTint="@color/teal_700"
+        app:srcCompat="@drawable/ic_add" />
 
 </RelativeLayout>

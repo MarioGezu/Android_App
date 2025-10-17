@@ -12,6 +12,8 @@ import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import android.widget.AdapterView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -70,7 +72,8 @@ public class ExpenseFragment extends Fragment {
 
         // Keep references to the dynamic views
         final EditText[] nameInput = new EditText[1];
-        final EditText[] costInput = new EditText[1]; // can be distance or cost depending on type
+        final EditText[] costInput = new EditText[1];
+
 
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -79,11 +82,14 @@ public class ExpenseFragment extends Fragment {
 
                 int layoutId;
                 switch (position) {
-                    case 0: // Food
+                    case 0:
+                        layoutId = R.layout.layout_expense_transport;
+                        break;
+                    case 1:
                         layoutId = R.layout.layout_expense_accommodation;
                         break;
-                    case 1: // Transport
-                        layoutId = R.layout.layout_expense_transport;
+                    case 2:
+                        layoutId = R.layout.layout_expense_ticket;
                         break;
                     default:
                         layoutId = R.layout.layout_expense_accommodation;
@@ -95,11 +101,13 @@ public class ExpenseFragment extends Fragment {
                 // Find inputs in the newly inflated layout
                 nameInput[0] = dynamicView.findViewById(R.id.expenseNameInput);
 
-                // For simplicity, use costInput for numeric field (cost/distance)
-                if (position == 0) { // Food
+
+                if (position == 0) { // transport
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
-                } else if (position == 1) { // Transport
-                    costInput[0] = dynamicView.findViewById(R.id.expenseDistanceInput);
+                } else if (position == 1) { // accommodation
+                    costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
+                } else if (position == 2) { // ticket
+                    costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 }
             }
 
