@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -56,8 +57,7 @@ public class ExpenseFragment extends Fragment {
         View dialogView = inflater.inflate(R.layout.dialog_add_expense, null);
 
         Spinner typeSpinner = dialogView.findViewById(R.id.expenseTypeSpinner);
-        EditText nameInput = dialogView.findViewById(R.id.expenseNameInput);
-        EditText costInput = dialogView.findViewById(R.id.expenseCostInput);
+        FrameLayout container = dialogView.findViewById(R.id.dynamicContainer);
         Button addBtn = dialogView.findViewById(R.id.addExpenseButton);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -68,15 +68,58 @@ public class ExpenseFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(adapter);
 
+        // Keep references to the dynamic views
+        final EditText[] nameInput = new EditText[1];
+        final EditText[] costInput = new EditText[1]; // can be distance or cost depending on type
+
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                container.removeAllViews(); // clear previous layout
+
+                int layoutId;
+                switch (position) {
+                    case 0: // Food
+                        layoutId = R.layout.layout_expense_accommodation;
+                        break;
+                    case 1: // Transport
+                        layoutId = R.layout.layout_expense_transport;
+                        break;
+                    default:
+                        layoutId = R.layout.layout_expense_accommodation;
+                }
+
+                View dynamicView = inflater.inflate(layoutId, container, false);
+                container.addView(dynamicView);
+
+                // Find inputs in the newly inflated layout
+                nameInput[0] = dynamicView.findViewById(R.id.expenseNameInput);
+
+                // For simplicity, use costInput for numeric field (cost/distance)
+                if (position == 0) { // Food
+                    costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
+                } else if (position == 1) { // Transport
+                    costInput[0] = dynamicView.findViewById(R.id.expenseDistanceInput);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                container.removeAllViews();
+            }
+        });
+
         AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setView(dialogView)
                 .create();
 
         addBtn.setOnClickListener(v -> {
+            if (nameInput[0] == null || costInput[0] == null) return;
+
             String type = typeSpinner.getSelectedItem().toString();
-            String name = nameInput.getText().toString();
+            String name = nameInput[0].getText().toString();
             double cost = 0;
-            try { cost = Double.parseDouble(costInput.getText().toString()); }
+            try { cost = Double.parseDouble(costInput[0].getText().toString()); }
             catch (NumberFormatException ignored) {}
 
             if (name.isEmpty() || cost <= 0) {
@@ -84,6 +127,7 @@ public class ExpenseFragment extends Fragment {
                 return;
             }
 
+            // Add expense to your list
             expenseList.add(new Expense(type, name, cost));
             expenseAdapter.notifyItemInserted(expenseList.size() - 1);
             dialog.dismiss();
@@ -91,4 +135,5 @@ public class ExpenseFragment extends Fragment {
 
         dialog.show();
     }
+
 }

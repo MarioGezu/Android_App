@@ -1,5 +1,6 @@
 package com.example.caclulator.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.example.caclulator.models.Expense;
 
 import java.util.List;
 
+// Áthidalja a költségeket(Expense) a RecyclerView, dinamikus listával, amely a item_expense.xml alapján listázza ki a
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHolder> {
 
     private List<Expense> expenseList;
@@ -29,6 +31,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHold
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Expense expense = expenseList.get(position);
