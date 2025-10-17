@@ -27,4 +27,23 @@
             android:hint="@string/cost"
             android:inputType="numberDecimal"/>
     </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/checkboxDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/discount"/>
+        <EditText
+            android:id="@+id/expenseDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingHorizontal="5dp"
+            android:inputType="number"
+            android:hint="@string/discount_with_percentage"
+            android:visibility="gone"/>
+    </LinearLayout>
 </LinearLayout>

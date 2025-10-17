@@ -120,6 +120,7 @@ public class ExpenseFragment extends Fragment {
                     discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 } else if (position == 1) { // accommodation
+                    discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 } else if (position == 2) { // ticket
                     discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
@@ -143,7 +144,10 @@ public class ExpenseFragment extends Fragment {
             String type = typeSpinner.getSelectedItem().toString();
             String name = nameInput[0].getText().toString();
             double cost = 0;
+            int discount = 0;
             try { cost = Double.parseDouble(costInput[0].getText().toString()); }
+            catch (NumberFormatException ignored) {}
+            try { discount = Integer.parseInt(costInput[0].getText().toString()); }
             catch (NumberFormatException ignored) {}
 
             if (name.isEmpty() || cost <= 0) {
@@ -152,7 +156,7 @@ public class ExpenseFragment extends Fragment {
             }
 
             // Add expense to your list
-            expenseList.add(new Expense(type, name, cost));
+            expenseList.add(new Expense(type, name, cost, discount));
             expenseAdapter.notifyItemInserted(expenseList.size() - 1);
             dialog.dismiss();
         });
