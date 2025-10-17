@@ -9,6 +9,24 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager2 viewPager;
     private BottomNavigationView bottomNavigationView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText studentDiscounts, travelExpenses, ticketExpenses, numberOfStudents, numberOfGrownUps, houseExpenses, budget, time;
+    TextView textView, textView2, textView3, textView4, textView5;
+
+    Button button, button2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
