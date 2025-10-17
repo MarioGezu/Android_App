@@ -13,6 +13,10 @@
     <string name="total_people">Total People: -</string>
     <string name="total_cost_0_00">Total Cost: $0.00</string>
     <string name="add_expense">Add Expense</string>
+    <string name="transportation">Transportation</string>
+    <string name="cost">Cost</string>
+    <string name="discount">Discount</string>
+    <string name="discount_with_percentage">Discount %</string>
     <string-array name="expense_types">
         <item>Travel</item>
         <item>Accommodation</item>
