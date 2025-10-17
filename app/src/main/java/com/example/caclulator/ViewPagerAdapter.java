@@ -19,6 +19,8 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
                 return new FieldTripFragment();
             case 1:
                 return new ExpenseFragment();
+            case 2:
+                return new AnalyseFragment();
             default:
                 return new FieldTripFragment();
         }
@@ -26,6 +28,6 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2; // Number of tabs
+        return 3; // Number of tabs
     }
 }
