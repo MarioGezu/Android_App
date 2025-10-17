@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:background="@color/bg"
         app:itemIconTint="@color/title_fg"
-        app:itemTextColor="@color/title_fg"
         app:itemTextAppearanceActiveBoldEnabled="true"
+        app:itemTextColor="@color/title_fg"
         app:menu="@menu/bottom_nav_menu" />
 </LinearLayout>
