@@ -66,9 +66,11 @@ public class FieldTripFragment extends Fragment {
         // Focus listeners
         studentsInput.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) showKeyboard(studentsInput);
+            hideKeyboard();
         });
         teachersInput.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) showKeyboard(teachersInput);
+            hideKeyboard();
         });
         initKeyboard(view);
         return view;
