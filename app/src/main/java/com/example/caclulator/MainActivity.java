@@ -82,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
         double num6= Double.parseDouble(studentDiscounts.getText().toString());
 
         int count = num + num2;
-        int expences = num3 + num4 + num5;
-        double finalprice =  expences * (num6 / 100);
-        double timeRemain = finalprice / num8;
+        int expences = (num3 * count) + (num4 * count) + (num5 * count);
+        double finalprice = expences - (expences * (num6 / 100));
+        double timeRemain = Math.round(finalprice / num8);
 
         if(num7 < finalprice){
            textView5.setText("Nincs elég zsebpénz!");
@@ -95,14 +95,15 @@ public class MainActivity extends AppCompatActivity {
 
         textView4.setText(String.format(
                 "\tLétszám"
-                +"\nDiák: " + num
-                +"\nTanár: " + num2
+                +"\nTanár: " + num
+                +"\nDiák: " + num2
                 +"\nÖsszlétszám: " + count
                 +"\n\tKöltségvetés"
                 +"\nUtazási költség: " + (num3 * count)
                 +"\nBelépő költség: " + (num4 * count)
                 +"\nSzállási költség: " + (num5 * count)
-                +"\n Kedvezmény: " + num6
+                + "\nKedvezmény nélkül: " + expences
+                +"\nKedvezmény: " + num6
                 +"\nÖsszesen: " + finalprice
                 +"\nHónapokra osztva: " + timeRemain
         ));

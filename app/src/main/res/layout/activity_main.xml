@@ -150,8 +150,8 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="391dp"
-        android:layout_height="289dp"
+        android:layout_width="275dp"
+        android:layout_height="299dp"
         android:layout_marginTop="280dp"
         android:text="Eredmények"
         app:layout_constraintBottom_toBottomOf="parent"
