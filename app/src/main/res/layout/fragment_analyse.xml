@@ -13,12 +13,21 @@
         android:text="Tips"
         android:textAlignment="center" />
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/lineChart"
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_below="@+id/tips"
         android:layout_margin="16dp"
         android:layout_marginTop="-80dp" />
+
+    <TextView
+        android:id="@+id/allData"
+        android:layout_width="378dp"
+        android:layout_height="325dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Összes adat"
+        android:textAlignment="center" />
 
 </RelativeLayout>

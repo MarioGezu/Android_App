@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,6 +54,11 @@ public class ExpenseFragment extends Fragment {
         recyclerView.setAdapter(expenseAdapter);
 
         addButton.setOnClickListener(v -> showAddExpenseDialog());
+
+        ExpenseViewModel viewModel = new ViewModelProvider(requireActivity()).get(ExpenseViewModel.class);
+
+// When adding expense:
+
 
         return view;
     }
@@ -120,7 +126,7 @@ public class ExpenseFragment extends Fragment {
                     discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 } else if (position == 1) { // accommodation
-                    discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
+                    discountInput[0] = null;
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 } else if (position == 2) { // ticket
                     discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
@@ -155,11 +161,16 @@ public class ExpenseFragment extends Fragment {
                 return;
             }
 
-            // Add expense to your list
-            expenseList.add(new Expense(type, name, cost, discount));
+            Expense newExpense = new Expense(type, name, cost, discount);
+            expenseList.add(newExpense);
             expenseAdapter.notifyItemInserted(expenseList.size() - 1);
+
+// Update ViewModel
+            ExpenseViewModel viewModel = new ViewModelProvider(requireActivity()).get(ExpenseViewModel.class);
+            viewModel.addExpense(newExpense);
             dialog.dismiss();
         });
+
 
         dialog.show();
     }
