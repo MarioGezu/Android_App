@@ -16,6 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/field_trip_details"
+            android:textColor="@color/title_fg"
+            android:background="@drawable/title_bg"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="24dp" />
@@ -24,8 +26,10 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/text_bg"
             android:hint="@string/number_of_students"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/studentsInput"
@@ -38,8 +42,10 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/text_bg"
             android:hint="@string/number_of_teachers"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/teachersInput"
@@ -53,7 +59,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/date_of_trip"
-            android:layout_marginBottom="24dp">
+            android:background="@color/text_bg"
+            android:layout_marginBottom="24dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dateInput"
@@ -79,6 +87,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/days_left"
                 android:textSize="16sp"
+                android:textColor="@color/text_fg"
+                android:background="@drawable/text_bg"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
@@ -87,6 +97,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/total_people"
                 android:textSize="16sp"
+                android:textColor="@color/text_fg"
+                android:background="@drawable/text_bg"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
@@ -94,7 +106,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/total_cost_0_00"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:textColor="@color/text_fg"
+                android:background="@drawable/text_bg"/>
         </LinearLayout>
         <include
             layout="@layout/keyboard_calculator"

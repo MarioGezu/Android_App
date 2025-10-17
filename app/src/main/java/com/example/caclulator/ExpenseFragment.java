@@ -115,13 +115,12 @@ public class ExpenseFragment extends Fragment {
                 // Find inputs in the newly inflated layout
                 nameInput[0] = dynamicView.findViewById(R.id.expenseNameInput);
 
-
                 if (position == 0) { // transport
                     discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 } else if (position == 1) { // accommodation
-                    discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
+                    discountInput[0] = null;
                 } else if (position == 2) { // ticket
                     discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                     costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);

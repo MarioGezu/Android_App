@@ -2,5 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="teal_700">#009688</color>
+    <color name="bg">#f0f3fa</color>
+    <color name="fg">#d5deef</color>
+    <color name="button_bg">#b1c9ef</color>
+    <color name="button_fg">#395886</color>
+    <color name="text_bg">#f0f3fa</color>
+    <color name="text_fg">#8aaee0</color>
+    <color name="text_accent">f4f6f9</color>
+    <color name="title_bg">#d5deef</color>
+    <color name="title_fg">#628ecb</color>
 </resources>
