@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_fieldtrip"
+        android:title="@string/field_trip"
+        android:icon="@android:drawable/ic_menu_myplaces" />
+    <item
+        android:id="@+id/nav_expenses"
+        android:title="@string/expenses"
+        android:icon="@android:drawable/ic_menu_agenda" />
+    <item
+        android:id="@+id/nav_analysis"
+        android:title="@string/analysis"
+        android:icon="@android:drawable/ic_menu_manage"/>
+</menu>
