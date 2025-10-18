@@ -1,8 +1,11 @@
-package com.example.caclulator;
+package com.example.calculator.ui;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.calculator.R;
+import com.example.calculator.ui.adapters.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,21 +26,12 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
         // Bottom navigation item clicks
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.nav_fieldtrip) {
-                viewPager.setCurrentItem(0);
-                return true;
-            } else if (item.getItemId() == R.id.nav_expenses) {
-                viewPager.setCurrentItem(1);
-                return true;
-            } else if (item.getItemId() == R.id.nav_analysis) {
-                viewPager.setCurrentItem(2);
-                return true;
-            }
-            return false;
-        });
-
+        navigationItemSelector();
         // Sync bottom navigation when swiping
+        viewPagerPageChangeRegister();
+    }
+
+    private void viewPagerPageChangeRegister() {
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -54,6 +48,22 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
             }
+        });
+    }
+
+    private void navigationItemSelector() {
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.nav_fieldtrip) {
+                viewPager.setCurrentItem(0);
+                return true;
+            } else if (item.getItemId() == R.id.nav_expenses) {
+                viewPager.setCurrentItem(1);
+                return true;
+            } else if (item.getItemId() == R.id.nav_analysis) {
+                viewPager.setCurrentItem(2);
+                return true;
+            }
+            return false;
         });
     }
 }

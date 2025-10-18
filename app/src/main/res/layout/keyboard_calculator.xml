@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/teal_700"
+    android:background="@color/bg"
     android:padding="8dp"
     android:visibility="gone">
 
@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginBottom="4dp">
-        <Button android:text="7" android:id="@+id/key7" style="@style/KeyStyle"/>
-        <Button android:text="8" android:id="@+id/key8" style="@style/KeyStyle"/>
-        <Button android:text="9" android:id="@+id/key9" style="@style/KeyStyle"/>
+        <Button android:text="@string/_7" android:id="@+id/key7" style="@style/KeyStyle"/>
+        <Button android:text="@string/_8" android:id="@+id/key8" style="@style/KeyStyle"/>
+        <Button android:text="@string/_9" android:id="@+id/key9" style="@style/KeyStyle"/>
     </LinearLayout>
 
     <!-- Row 2 -->
@@ -25,9 +25,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginBottom="4dp">
-        <Button android:text="4" android:id="@+id/key4" style="@style/KeyStyle"/>
-        <Button android:text="5" android:id="@+id/key5" style="@style/KeyStyle"/>
-        <Button android:text="6" android:id="@+id/key6" style="@style/KeyStyle"/>
+        <Button android:text="@string/_4" android:id="@+id/key4" style="@style/KeyStyle"/>
+        <Button android:text="@string/_5" android:id="@+id/key5" style="@style/KeyStyle"/>
+        <Button android:text="@string/_6" android:id="@+id/key6" style="@style/KeyStyle"/>
     </LinearLayout>
 
     <!-- Row 3 -->
@@ -36,9 +36,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginBottom="4dp">
-        <Button android:text="1" android:id="@+id/key1" style="@style/KeyStyle"/>
-        <Button android:text="2" android:id="@+id/key2" style="@style/KeyStyle"/>
-        <Button android:text="3" android:id="@+id/key3" style="@style/KeyStyle"/>
+        <Button android:text="@string/_1" android:id="@+id/key1" style="@style/KeyStyle"/>
+        <Button android:text="@string/_2" android:id="@+id/key2" style="@style/KeyStyle"/>
+        <Button android:text="@string/_3" android:id="@+id/key3" style="@style/KeyStyle"/>
     </LinearLayout>
 
     <!-- Row 4 -->
@@ -46,8 +46,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
-        <Button android:text="0" android:id="@+id/key0" style="@style/KeyStyle"/>
-        <Button android:text="⌫" android:id="@+id/keyBackspace" style="@style/KeyStyle"/>
-        <Button android:text="Done" android:id="@+id/keyDone" style="@style/KeyStyle"/>
+        <Button android:text="@string/_0" android:id="@+id/key0" style="@style/KeyStyle"/>
+        <Button android:text="@string/backslash" android:id="@+id/keyBackspace" style="@style/KeyStyle"/>
+        <Button android:text="@string/done" android:id="@+id/keyDone" style="@style/KeyStyle"/>
     </LinearLayout>
 </LinearLayout>

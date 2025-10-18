@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Caclulator</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="label_type">Type: %1$s</string>
+    <string name="label_name">Name: %1$s</string>
+    <string name="label_cost">Cost: %1$s</string>
     <string name="analysis">Analysis</string>
     <string name="expenses">Expenses</string>
     <string name="field_trip">Field Trip</string>
@@ -18,6 +21,21 @@
     <string name="discount_with_percentage">Discount %</string>
     <string name="ticket_name">Ticket name</string>
     <string name="accommodation">Accommodation</string>
+    <string name="travel">Travel</string>
+    <string name="bus_ticket">Bus Ticket</string>
+    <string name="remove">Remove</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_0">0</string>
+    <string name="backslash">⌫</string>
+    <string name="done">Done</string>
     <string-array name="expense_types">
         <item>Travel</item>
         <item>Accommodation</item>

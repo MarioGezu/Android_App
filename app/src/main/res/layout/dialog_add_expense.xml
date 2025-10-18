@@ -39,9 +39,11 @@
         <!-- Add Expense Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addExpenseButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Expense"
+            android:width="1000dp"
+            android:layout_marginHorizontal="100dp"
+            android:text="@string/add_expense"
             android:textStyle="bold"
             app:backgroundTint="@color/button_bg"
             android:textColor="@color/button_fg"

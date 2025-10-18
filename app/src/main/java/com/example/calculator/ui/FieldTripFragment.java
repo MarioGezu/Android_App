@@ -1,0 +1,74 @@
+package com.example.calculator.ui;
+
+
+import android.app.DatePickerDialog;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.example.calculator.R;
+import com.example.calculator.ui.dialogs.Keyboard;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+public class FieldTripFragment extends Fragment {
+
+    private TextInputEditText dateInput;
+    private final Calendar selectedDate = Calendar.getInstance();
+
+    public FieldTripFragment() {}
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_field_trip, container, false);
+
+        TextInputEditText studentsInput = view.findViewById(R.id.studentsInput);
+        TextInputEditText teachersInput = view.findViewById(R.id.teachersInput);
+        dateInput = view.findViewById(R.id.dateInput);
+
+        TextView daysLeftText = view.findViewById(R.id.daysLeftText);
+        TextView totalPeopleText = view.findViewById(R.id.totalPeopleText);
+        TextView totalCostText = view.findViewById(R.id.totalCostText);
+
+        // numeric keyboard
+        Keyboard keyboard = new Keyboard(view);
+        // default keyboard disabled
+        studentsInput.setShowSoftInputOnFocus(false);
+        teachersInput.setShowSoftInputOnFocus(false);
+        // on_focus listeners
+        keyboard.setKeyboardListener(studentsInput);
+        keyboard.setKeyboardListener(teachersInput);
+        // Open date picker
+        dateInput.setOnClickListener(v -> showDatePicker());
+
+        return view;
+    }
+
+    private void showDatePicker() {
+        Calendar today = Calendar.getInstance();
+        new DatePickerDialog(
+                getContext(),
+                (DatePicker datePicker, int year, int month, int day) -> {
+                    selectedDate.set(year, month, day);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                    dateInput.setText(sdf.format(selectedDate.getTime()));
+                },
+                today.get(Calendar.YEAR),
+                today.get(Calendar.MONTH),
+                today.get(Calendar.DAY_OF_MONTH)
+        ).show();
+    }
+}

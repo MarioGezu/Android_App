@@ -34,11 +34,15 @@
             android:layout_height="wrap_content"
             app:startIconDrawable="@drawable/ic_ticket"
             app:boxBackgroundMode="outline"
+            app:boxBackgroundColor="@color/text_bg"
+            app:boxStrokeColor="@color/title_fg_stroke"
             app:boxCornerRadiusTopStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusBottomEnd="12dp"
-            app:boxStrokeColor="@color/button_bg"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="3dp"
+            android:textColorHint="@color/title_fg"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -46,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/fg"
+                android:textStyle="bold"
                 android:hint="@string/ticket_name"
                 android:paddingStart="45dp"
                 android:inputType="textCapWords" />
@@ -57,11 +62,15 @@
             android:layout_height="wrap_content"
             app:startIconDrawable="@drawable/ic_money"
             app:boxBackgroundMode="outline"
+            app:boxBackgroundColor="@color/text_bg"
+            app:boxStrokeColor="@color/title_fg_stroke"
             app:boxCornerRadiusTopStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusBottomEnd="12dp"
-            app:boxStrokeColor="@color/button_bg"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="3dp"
+            android:textColorHint="@color/title_fg"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -69,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/fg"
+                android:textStyle="bold"
                 android:hint="@string/cost"
                 android:paddingStart="45dp"
                 android:inputType="numberDecimal" />

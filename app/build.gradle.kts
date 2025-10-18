@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.caclulator"
+    namespace = "com.example.calculator"
     compileSdk {
         version = release(36)
     }

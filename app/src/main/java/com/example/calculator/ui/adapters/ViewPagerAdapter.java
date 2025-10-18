@@ -1,9 +1,13 @@
-package com.example.caclulator;
+package com.example.calculator.ui.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.example.calculator.ui.AnalyseFragment;
+import com.example.calculator.ui.ExpenseFragment;
+import com.example.calculator.ui.FieldTripFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
