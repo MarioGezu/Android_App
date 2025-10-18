@@ -14,8 +14,6 @@
     <string name="field_trip">Field Trip</string>
     <string name="field_trip_details">Field Trip Details</string>
     <string name="number_of_students">Number of Students</string>
-    <string name="number_of_teachers">Number of Teachers</string>
-    <string name="date_of_trip">Date of Trip</string>
     <string name="add_expense">Add Expense</string>
     <string name="transportation">Transportation</string>
     <string name="cost">Cost</string>
@@ -23,8 +21,6 @@
     <string name="discount_with_percentage">Discount %</string>
     <string name="ticket_name">Ticket name</string>
     <string name="accommodation">Accommodation</string>
-    <string name="travel">Travel</string>
-    <string name="bus_ticket">Bus Ticket</string>
     <string name="remove">Remove</string>
     <!-- Calculator -->
     <string name="_7">7</string>

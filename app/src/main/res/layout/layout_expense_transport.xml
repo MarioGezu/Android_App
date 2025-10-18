@@ -54,6 +54,7 @@
                 android:textStyle="bold"
                 android:hint="@string/transportation"
                 android:paddingStart="45dp"
+                android:paddingEnd="0dp"
                 android:inputType="textCapWords" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,6 +83,7 @@
                 android:textStyle="bold"
                 android:hint="@string/cost"
                 android:paddingStart="45dp"
+                android:paddingEnd="0dp"
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 

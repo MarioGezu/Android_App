@@ -49,7 +49,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView expenseType, expenseName, expenseCost, expenseDiscount;
+        final TextView expenseType, expenseName, expenseCost, expenseDiscount;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
