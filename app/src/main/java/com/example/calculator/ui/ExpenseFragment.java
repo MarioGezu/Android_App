@@ -35,12 +35,13 @@ public class ExpenseFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_expense, container, false);
+        ExpenseViewModel viewModel = new ViewModelProvider(requireActivity()).get(ExpenseViewModel.class);
 
         RecyclerView recyclerView = view.findViewById(R.id.expenseRecyclerView);
         FloatingActionButton addButton = view.findViewById(R.id.addExpenseFab);
 
         expenseList = new ArrayList<>();
-        expenseAdapter = new ExpenseAdapter(getContext(), expenseList);
+        expenseAdapter = new ExpenseAdapter(getContext(), expenseList, viewModel);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(expenseAdapter);
 
@@ -48,9 +49,6 @@ public class ExpenseFragment extends Fragment {
                 new ExpenseDialog(requireContext(), expenseList, requireActivity())
                         .show(expense -> expenseAdapter.notifyItemInserted(expenseList.size() - 1))
         );
-
-        ExpenseViewModel viewModel = new ViewModelProvider(requireActivity()).get(ExpenseViewModel.class);
-        // When adding expense:
 
         return view;
     }
