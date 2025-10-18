@@ -52,9 +52,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHold
         }
 
         // 🧩 Handle deletion
-        holder.deleteButton.setOnClickListener(v -> {
-            viewModel.delExpense(holder.getBindingAdapterPosition());
-        });
+        holder.deleteButton.setOnClickListener(v ->
+            viewModel.delExpense(holder.getBindingAdapterPosition())
+        );
     }
 
     @Override
