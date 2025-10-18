@@ -70,7 +70,7 @@ public class ExpenseDialog {
         dialog.show();
     }
 
-    private void typeSpinnerListener(Spinner typeSpinner, FrameLayout container) {
+    private void typeSpinnerListener(@NonNull Spinner typeSpinner, FrameLayout container) {
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             @SuppressLint("MissingInflatedId")
@@ -92,7 +92,7 @@ public class ExpenseDialog {
         });
     }
 
-    private void addButtonListener(OnExpenseAddedListener listener, Button addBtn, Spinner typeSpinner, AlertDialog dialog) {
+    private void addButtonListener(OnExpenseAddedListener listener, @NonNull Button addBtn, Spinner typeSpinner, AlertDialog dialog) {
         addBtn.setOnClickListener(v -> {
             if (nameInput[0] == null || costInput[0] == null) return;
 
@@ -153,7 +153,7 @@ public class ExpenseDialog {
             case 0: return R.layout.layout_expense_transport;
             case 1: return R.layout.layout_expense_accommodation;
             case 2: return R.layout.layout_expense_ticket;
-            default: return R.layout.layout_expense_accommodation;
         }
+        return position;
     }
 }

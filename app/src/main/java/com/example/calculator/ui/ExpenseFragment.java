@@ -44,12 +44,10 @@ public class ExpenseFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(expenseAdapter);
 
-        addButton.setOnClickListener(v -> {
-            new ExpenseDialog(requireContext(), expenseList, requireActivity())
-                    .show(expense -> {
-                        expenseAdapter.notifyItemInserted(expenseList.size() - 1);
-                    });
-        });
+        addButton.setOnClickListener(v ->
+                new ExpenseDialog(requireContext(), expenseList, requireActivity())
+                        .show(expense -> expenseAdapter.notifyItemInserted(expenseList.size() - 1))
+        );
 
         ExpenseViewModel viewModel = new ViewModelProvider(requireActivity()).get(ExpenseViewModel.class);
         // When adding expense:

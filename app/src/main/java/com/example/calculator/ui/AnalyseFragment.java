@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,8 +20,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.ValueFormatter;
-
+import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,73 +42,67 @@ public class AnalyseFragment extends Fragment {
 
         types = res.getStringArray(R.array.expense_types);
         colors = new int[]{
-                res.getColor(android.R.color.holo_blue_dark),
-                res.getColor(android.R.color.holo_orange_dark),
-                res.getColor(android.R.color.holo_red_dark)
+                ContextCompat.getColor(requireContext(), android.R.color.holo_blue_dark),
+                ContextCompat.getColor(requireContext(), android.R.color.holo_orange_dark),
+                ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark)
         };
 
         // Observe expenses
         ExpenseViewModel viewModel = new ViewModelProvider(requireActivity()).get(ExpenseViewModel.class);
         viewModel.getExpenses().observe(getViewLifecycleOwner(), this::updateChart);
 
+        ListView dataList = view.findViewById(R.id.dataList);
+        List<String> statItems = new ArrayList<>();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
+                android.R.layout.simple_list_item_1, statItems);
+        dataList.setAdapter(adapter);
+
+        viewModel.getExpenses().observe(getViewLifecycleOwner(), expenses -> {
+            statItems.clear();
+
+            List<Expense> sortedExpenses = new ArrayList<>(expenses);
+            sortedExpenses.sort((e1, e2) -> Float.compare(e2.getCost(), e1.getCost()));
+
+            for (Expense e : sortedExpenses) {
+                statItems.add(e.getType() + ": " + e.getCost());
+            }
+
+            statItems.add(0, "Total cost: " + viewModel.getTotalCost().getValue());
+            statItems.add(1, "Monthly per person: " + viewModel.getMonthlyPaymentPerPerson().getValue());
+            statItems.add(2, "Participants: " + viewModel.getParticipantCount().getValue());
+            statItems.add(3, "Months left: " + viewModel.getMonths().getValue());
+
+            adapter.notifyDataSetChanged();
+        });
+
         return view;
     }
 
     private void updateChart(List<Expense> expenses) {
-        if (barChart == null || types == null) return;
-
-        // Map type -> total
-        Map<String, Float> totals = new HashMap<>();
-        for (String type : types) totals.put(type, 0f);
-
-        for (Expense expense : expenses) {
-            if (totals.containsKey(expense.getType())) {
-                totals.put(expense.getType(), totals.get(expense.getType()) + (float) expense.getCost());
-            }
+        if (expenses == null || expenses.isEmpty()) {
+            barChart.clear();
+            barChart.invalidate();
+            return;
         }
 
-        // Create BarDataSets dynamically
-        ArrayList<BarDataSet> dataSets = new ArrayList<>();
-        ArrayList<BarEntry> entries;
-        for (int i = 0; i < types.length; i++) {
-            String type = types[i];
-            float total = totals.get(type);
-            entries = new ArrayList<>();
-            entries.add(new BarEntry(0f, total));
-            BarDataSet set = new BarDataSet(entries, type);
-            set.setColor(colors[i % colors.length]);
-            dataSets.add(set);
+        Map<String, Float> categoryTotals = new HashMap<>();
+        for (Expense e : expenses) {
+            float current = categoryTotals.getOrDefault(e.getType(), 0f);
+            categoryTotals.put(e.getType(), current + e.getCost());
         }
 
-        // Combine datasets into BarData
-        BarData barData = new BarData();
-        for (BarDataSet set : dataSets) barData.addDataSet(set);
+        List<BarEntry> entries = new ArrayList<>();
+        int i = 0;
+        for (String type : categoryTotals.keySet()) {
+            entries.add(new BarEntry(i++, categoryTotals.get(type)));
+        }
 
-        // Configure bar widths and spacing
-        float groupSpace = 0.3f;
-        float barSpace = 0.05f;
-        float barWidth = 0.2f;
-        barData.setBarWidth(barWidth);
-
-        barChart.setData(barData);
-        barChart.groupBars(0f, groupSpace, barSpace);
-
-        // Configure X-axis
-        barChart.getXAxis().setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                return "Expenses"; // single group label
-            }
-        });
-        barChart.getXAxis().setGranularity(1f);
-        barChart.getXAxis().setCenterAxisLabels(true);
-        barChart.getXAxis().setDrawGridLines(false);
-        barChart.getXAxis().setPosition(com.github.mikephil.charting.components.XAxis.XAxisPosition.BOTTOM);
-
-        // Optional styling
-        barChart.getDescription().setText("Expenses by Type");
-        barChart.animateY(500);
+        BarDataSet dataSet = new BarDataSet(entries, "Expenses");
+        dataSet.setColors(colors);
+        BarData data = new BarData(dataSet);
+        barChart.setData(data);
         barChart.invalidate();
     }
+
 }
 

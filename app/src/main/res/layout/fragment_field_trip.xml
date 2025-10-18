@@ -100,7 +100,6 @@
                 android:id="@+id/daysLeftText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/days_left"
                 android:textSize="16sp"
                 android:textColor="@color/text_fg"
                 android:background="@drawable/text_bg"
@@ -110,7 +109,6 @@
                 android:id="@+id/totalPeopleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/total_people"
                 android:textSize="16sp"
                 android:textColor="@color/text_fg"
                 android:background="@drawable/text_bg"
@@ -120,7 +118,6 @@
                 android:id="@+id/totalCostText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/total_cost_0_00"
                 android:textSize="16sp"
                 android:textColor="@color/text_fg"
                 android:background="@drawable/text_bg"/>
