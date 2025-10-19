@@ -51,7 +51,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHold
             holder.expenseDiscount.setVisibility(View.GONE);
         }
 
-        // 🧩 Handle deletion
+
         holder.deleteButton.setOnClickListener(v ->
             viewModel.delExpense(holder.getBindingAdapterPosition())
         );

@@ -103,7 +103,7 @@ public class ExpenseDialog {
             catch (NumberFormatException ignored) { cost = 0; }
 
             int discount = 0;
-            if (discountInput[0] != null) {
+            if (discountInput[0] != null && discountInput[0].getVisibility() == View.VISIBLE) {
                 try { discount = Integer.parseInt(discountInput[0].getText().toString()); }
                 catch (NumberFormatException ignored) { discount = 0; }
             }
@@ -125,27 +125,41 @@ public class ExpenseDialog {
     private void dynamicInput(int position, View dynamicView) {
         switch(position) {
             case 0: // Travel
-                discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                 costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
+                discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                 break;
             case 1: // Accommodation
-                discountInput[0] = null;
                 costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
+                discountInput[0] = null;
                 break;
             case 2: // Tickets
-                discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                 costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
+                discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                 break;
         }
     }
 
     private static void checkboxListener(View dynamicView) {
         CheckBox checkBox = dynamicView.findViewById(R.id.checkboxDiscount);
-        EditText editText = dynamicView.findViewById(R.id.expenseDiscount);
-        if (checkBox != null && editText != null) {
+        EditText discountEditText = dynamicView.findViewById(R.id.expenseDiscount);
+
+        // Only proceed if both views exist in the layout
+        if (checkBox != null && discountEditText != null) {
+            final View discountLayout = (View) discountEditText.getParent().getParent();
+
+            // Set initial state
+            discountLayout.setVisibility(View.GONE);
+            discountLayout.setAlpha(0f);
+
             checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                editText.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-                editText.animate().alpha(isChecked ? 1f : 0f).setDuration(200).start();
+                if (isChecked) {
+                    discountLayout.setVisibility(View.VISIBLE);
+                    discountLayout.animate().alpha(1f).setDuration(200).start();
+                } else {
+                    discountLayout.animate().alpha(0f).setDuration(200).withEndAction(() -> {
+                        discountLayout.setVisibility(View.GONE);
+                    }).start();
+                }
             });
         }
     }
