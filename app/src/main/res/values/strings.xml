@@ -5,15 +5,18 @@
     <string name="label_name">Name: %1$s</string>
     <string name="label_cost">Cost: %1$s</string>
     <!-- Field trip data -->
-    <string name="field_total_cost">Teljes összeg: %1$d</string> <!-- float/double, 2 decimals -->
-    <string name="field_months_left">Hónapok hátra: %1$d</string>   <!-- integer -->
-    <string name="field_total_students">Tanulók száma: %1$d</string> <!-- integer -->
+    <string name="total_cost">Total Price: %1$.2f</string>
+    <string name="months_left">Months left: %1$d</string>
+    <string name="participants">Participants: %1$d</string>
+    <string name="monthly_per_person">Monthly Per person: %1$.2f</string>
     <!-- Strings and hints -->
     <string name="analysis">Analysis</string>
     <string name="expenses">Expenses</string>
     <string name="field_trip">Field Trip</string>
     <string name="field_trip_details">Field Trip Details</string>
     <string name="number_of_students">Number of Students</string>
+    <string name="number_of_teachers">Number of Teachers</string>
+    <string name="date_of_trip">Date of Trip</string>
     <string name="add_expense">Add Expense</string>
     <string name="transportation">Transportation</string>
     <string name="cost">Cost</string>
@@ -36,8 +39,8 @@
     <string name="backslash">⌫</string>
     <string name="done">Done</string>
 
-    <string name="all_data_summary">📊 All Data Summary</string>
-    <string name="spending_insights">💡 Spending Insights</string>
+    <string name="all_data_summary">All Data Summary</string>
+    <string name="spending_insights">Spending Insights</string>
     <string name="category_breakdown">Category Breakdown</string>
     <string-array name="expense_types">
         <item>Travel</item>

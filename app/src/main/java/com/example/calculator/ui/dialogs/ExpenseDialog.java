@@ -51,7 +51,6 @@ public class ExpenseDialog {
         FrameLayout container = dialogView.findViewById(R.id.dynamicContainer);
         Button addBtn = dialogView.findViewById(R.id.addExpenseButton);
 
-        // Nem tetszenek a spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 context,
                 R.array.expense_types,
@@ -103,9 +102,11 @@ public class ExpenseDialog {
             try { cost = Integer.parseInt(costInput[0].getText().toString()); }
             catch (NumberFormatException ignored) { cost = 0; }
 
-            int discount;
-            try { discount = Integer.parseInt(costInput[0].getText().toString()); }
-            catch (NumberFormatException ignored) { discount = 0; }
+            int discount = 0;
+            if (discountInput[0] != null) {
+                try { discount = Integer.parseInt(discountInput[0].getText().toString()); }
+                catch (NumberFormatException ignored) { discount = 0; }
+            }
 
             if (name.isEmpty() || cost <= 0) {
                 Toast.makeText(context, "Please fill all fields correctly", Toast.LENGTH_SHORT).show();
@@ -116,7 +117,6 @@ public class ExpenseDialog {
             expenseList.add(expense);
             viewModel.addExpense(expense);
 
-            // megtudni hogy ez mit csinál
             if (listener != null) listener.onExpenseAdded(expense);
             dialog.dismiss();
         });
@@ -124,15 +124,15 @@ public class ExpenseDialog {
 
     private void dynamicInput(int position, View dynamicView) {
         switch(position) {
-            case 0:
+            case 0: // Travel
                 discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                 costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 break;
-            case 1:
+            case 1: // Accommodation
                 discountInput[0] = null;
                 costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 break;
-            case 2:
+            case 2: // Tickets
                 discountInput[0] = dynamicView.findViewById(R.id.expenseDiscount);
                 costInput[0] = dynamicView.findViewById(R.id.expenseCostInput);
                 break;
@@ -142,10 +142,12 @@ public class ExpenseDialog {
     private static void checkboxListener(View dynamicView) {
         CheckBox checkBox = dynamicView.findViewById(R.id.checkboxDiscount);
         EditText editText = dynamicView.findViewById(R.id.expenseDiscount);
-        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            editText.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-            editText.animate().alpha(isChecked ? 1f : 0f).setDuration(200).start();
-        });
+        if (checkBox != null && editText != null) {
+            checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                editText.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                editText.animate().alpha(isChecked ? 1f : 0f).setDuration(200).start();
+            });
+        }
     }
 
     private int layoutTypeSelector(int position) {
@@ -153,7 +155,7 @@ public class ExpenseDialog {
             case 0: return R.layout.layout_expense_transport;
             case 1: return R.layout.layout_expense_accommodation;
             case 2: return R.layout.layout_expense_ticket;
+            default: throw new IllegalArgumentException("Invalid expense type position: " + position);
         }
-        return position;
     }
 }

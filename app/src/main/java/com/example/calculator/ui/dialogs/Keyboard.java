@@ -49,11 +49,11 @@ public class Keyboard {
             text.delete(text.length() - 1, text.length());
         }
     }
-    private void showKeyboard(TextInputEditText input) {
+    public void showKeyboard(TextInputEditText input) {
         this.activeInput = input;
         this.keyboard.setVisibility(View.VISIBLE);
     }
-    private void hideKeyboard() {
+    public void hideKeyboard() {
         this.keyboard.setVisibility(View.GONE);
         this.activeInput = null;
     }

@@ -2,15 +2,15 @@ package com.example.calculator.ui;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.calculator.R;
-import com.example.calculator.ui.adapters.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ViewPager2 viewPager;
     private BottomNavigationView bottomNavigationView;
 
     @Override
@@ -18,52 +18,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewPager = findViewById(R.id.viewPager);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setOnItemSelectedListener(this::navigationItemSelector);
 
-        // Set up ViewPager adapter
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
-        viewPager.setAdapter(adapter);
-
-        // Bottom navigation item clicks
-        navigationItemSelector();
-        // Sync bottom navigation when swiping
-        viewPagerPageChangeRegister();
+        // Set default fragment
+        if (savedInstanceState == null) {
+            loadFragment(new FieldTripFragment());
+        }
     }
 
-    private void viewPagerPageChangeRegister() {
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                switch (position) {
-                    case 0:
-                        bottomNavigationView.setSelectedItemId(R.id.nav_fieldtrip);
-                        break;
-                    case 1:
-                        bottomNavigationView.setSelectedItemId(R.id.nav_expenses);
-                        break;
-                    case 2:
-                        bottomNavigationView.setSelectedItemId(R.id.nav_analysis);
-                        break;
-                }
-            }
-        });
+    private boolean navigationItemSelector(android.view.MenuItem item) {
+        Fragment selectedFragment = null;
+        int itemId = item.getItemId();
+        if (itemId == R.id.nav_field_trip) {
+            selectedFragment = new FieldTripFragment();
+        } else if (itemId == R.id.nav_expenses) {
+            selectedFragment = new ExpenseFragment();
+        } else if (itemId == R.id.nav_analysis) {
+            selectedFragment = new AnalyseFragment();
+        }
+
+        if (selectedFragment != null) {
+            loadFragment(selectedFragment);
+            return true;
+        }
+        return false;
     }
 
-    private void navigationItemSelector() {
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.nav_fieldtrip) {
-                viewPager.setCurrentItem(0);
-                return true;
-            } else if (item.getItemId() == R.id.nav_expenses) {
-                viewPager.setCurrentItem(1);
-                return true;
-            } else if (item.getItemId() == R.id.nav_analysis) {
-                viewPager.setCurrentItem(2);
-                return true;
-            }
-            return false;
-        });
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.commit();
     }
 }
