@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import com.example.calculator.R;
 import com.example.calculator.models.Expense;
 import com.example.calculator.viewmodel.ExpenseViewModel;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
@@ -30,9 +31,9 @@ public class ExpenseDialog {
     private final List<Expense> expenseList;
     private final ExpenseViewModel viewModel;
 
-    private final EditText[] nameInput = new EditText[1];
-    private final EditText[] costInput = new EditText[1];
-    private final EditText[] discountInput = new EditText[1];
+    private final TextInputEditText[] nameInput = new TextInputEditText[1];
+    private final TextInputEditText[] costInput = new TextInputEditText[1];
+    private final TextInputEditText[] discountInput = new TextInputEditText[1];
 
     public interface OnExpenseAddedListener {
         void onExpenseAdded(Expense expense);
@@ -51,6 +52,8 @@ public class ExpenseDialog {
         FrameLayout container = dialogView.findViewById(R.id.dynamicContainer);
         Button addBtn = dialogView.findViewById(R.id.addExpenseButton);
 
+        Keyboard keyboard = new Keyboard(dialogView);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 context,
                 R.array.expense_types,
@@ -58,7 +61,7 @@ public class ExpenseDialog {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(adapter);
-        typeSpinnerListener(typeSpinner, container);
+        typeSpinnerListener(typeSpinner, container, keyboard);
 
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setView(dialogView)
@@ -69,7 +72,7 @@ public class ExpenseDialog {
         dialog.show();
     }
 
-    private void typeSpinnerListener(@NonNull Spinner typeSpinner, FrameLayout container) {
+    private void typeSpinnerListener(@NonNull Spinner typeSpinner, FrameLayout container, Keyboard keyboard) {
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             @SuppressLint("MissingInflatedId")
@@ -82,6 +85,11 @@ public class ExpenseDialog {
                 checkboxListener(dynamicView);
                 nameInput[0] = dynamicView.findViewById(R.id.expenseNameInput);
                 dynamicInput(position, dynamicView);
+
+                if (costInput[0] != null)
+                    keyboard.setKeyboardListener(costInput[0]);
+                if (discountInput[0] != null)
+                    keyboard.setKeyboardListener(discountInput[0]);
             }
 
             @Override

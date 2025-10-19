@@ -22,7 +22,27 @@
             android:textStyle="bold"
             android:layout_marginBottom="24dp" />
 
-        <!-- Number of Students -->
+<!--        &lt;!&ndash; Number of Students &ndash;&gt;-->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:boxBackgroundMode="outline"-->
+<!--            app:boxBackgroundColor="@color/text_bg"-->
+<!--            app:boxStrokeColor="@color/title_fg_stroke"-->
+<!--            app:boxStrokeWidth="2dp"-->
+<!--            app:boxStrokeWidthFocused="3dp"-->
+<!--            android:textColorHint="@color/title_fg"-->
+<!--            android:hint="@string/number_of_students"-->
+<!--            android:layout_marginBottom="16dp">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/studentsInput"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textStyle="bold"-->
+<!--                android:inputType="number" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,27 +63,6 @@
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Number of Teachers -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:boxBackgroundMode="outline"
-            app:boxBackgroundColor="@color/text_bg"
-            app:boxStrokeColor="@color/title_fg_stroke"
-            app:boxStrokeWidth="2dp"
-            app:boxStrokeWidthFocused="3dp"
-            android:textColorHint="@color/title_fg"
-            android:hint="@string/number_of_students"
-            android:layout_marginBottom="16dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/teachersInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
-
         <!-- Date of Trip -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -74,7 +73,7 @@
             app:boxStrokeWidth="2dp"
             app:boxStrokeWidthFocused="3dp"
             android:textColorHint="@color/title_fg"
-            android:hint="@string/number_of_students"
+            android:hint="@string/date_of_trip"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText

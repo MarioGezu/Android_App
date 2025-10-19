@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,16 +16,13 @@ import com.example.calculator.R;
 import com.example.calculator.models.Expense;
 import com.example.calculator.viewmodel.ExpenseViewModel;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-
+import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class AnalyseFragment extends Fragment {
@@ -43,7 +39,6 @@ public class AnalyseFragment extends Fragment {
         barChart = view.findViewById(R.id.barChart);
         Resources res = getResources();
 
-        // Define types and colors
         types = res.getStringArray(R.array.expense_types);
         colors = new int[]{
                 ContextCompat.getColor(requireContext(), android.R.color.holo_blue_dark),
@@ -51,84 +46,62 @@ public class AnalyseFragment extends Fragment {
                 ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark)
         };
 
-        // Basic chart setup
-        barChart.getDescription().setEnabled(false);
-        barChart.getLegend().setEnabled(false);
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(types));
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setGranularity(1f);
-        xAxis.setLabelCount(types.length);
+        // Observe expenses
+        ExpenseViewModel viewModel = new ViewModelProvider(requireActivity()).get(ExpenseViewModel.class);
+        viewModel.getExpenses().observe(getViewLifecycleOwner(), this::updateChart);
 
-        // Setup ListView
         ListView dataList = view.findViewById(R.id.dataList);
         List<String> statItems = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
                 android.R.layout.simple_list_item_1, statItems);
         dataList.setAdapter(adapter);
 
-        // Observe ViewModel and update UI
-        ExpenseViewModel viewModel = new ViewModelProvider(requireActivity()).get(ExpenseViewModel.class);
         viewModel.getExpenses().observe(getViewLifecycleOwner(), expenses -> {
-            if (expenses == null) return;
-
-            // 1. Calculate category totals
-            Map<String, Float> categoryTotals = new HashMap<>();
-            for (String type : types) { // Initialize map to ensure order
-                categoryTotals.put(type, 0f);
-            }
-            for (Expense e : expenses) {
-                categoryTotals.put(e.getType(), categoryTotals.getOrDefault(e.getType(), 0f) + e.getCost());
-            }
-
-            // 2. Update Bar Chart
-            updateChart(categoryTotals);
-
-            // 3. Update Statistics List
             statItems.clear();
-            statItems.add(getString(R.string.total_cost, viewModel.getTotalCost().getValue()));
-            statItems.add(getString(R.string.monthly_per_person, viewModel.getMonthlyPaymentPerPerson().getValue()));
-            statItems.add(getString(R.string.participants, viewModel.getParticipantCount().getValue()));
-            statItems.add(getString(R.string.months_left, viewModel.getMonths().getValue()));
-            statItems.add(""); // Separator
-            statItems.add(getString(R.string.category_breakdown));
-            for (int i = 0; i < types.length; i++) {
-                statItems.add(types[i] + ": " + String.format(Locale.getDefault(), "%.2f", categoryTotals.get(types[i])));
+
+            List<Expense> sortedExpenses = new ArrayList<>(expenses);
+            sortedExpenses.sort((e1, e2) -> Float.compare(e2.getCost(), e1.getCost()));
+
+            for (Expense e : sortedExpenses) {
+                statItems.add(e.getType() + ": " + e.getCost());
             }
+
+            statItems.add(0, "Total cost: " + viewModel.getTotalCost().getValue());
+            statItems.add(1, "Monthly per person: " + viewModel.getMonthlyPaymentPerPerson().getValue());
+            statItems.add(2, "Participants: " + viewModel.getParticipantCount().getValue());
+            statItems.add(3, "Months left: " + viewModel.getMonths().getValue());
+
             adapter.notifyDataSetChanged();
         });
 
         return view;
     }
 
-    private void updateChart(Map<String, Float> categoryTotals) {
-        // Check if there is any data to display
-        boolean hasData = false;
-        for(float v : categoryTotals.values()) {
-            if (v > 0) {
-                hasData = true;
-                break;
-            }
-        }
-
-        if (!hasData) {
+    private void updateChart(List<Expense> expenses) {
+        if (expenses == null || expenses.isEmpty()) {
             barChart.clear();
             barChart.invalidate();
             return;
         }
 
-        // Create entries in a fixed order based on the 'types' array
+        Map<String, Float> categoryTotals = new HashMap<>();
+        for (Expense e : expenses) {
+            float current = categoryTotals.getOrDefault(e.getType(), 0f);
+            categoryTotals.put(e.getType(), current + e.getCost());
+        }
+
         List<BarEntry> entries = new ArrayList<>();
-        for (int i = 0; i < types.length; i++) {
-            entries.add(new BarEntry(i, categoryTotals.get(types[i])));
+        int i = 0;
+        for (String type : categoryTotals.keySet()) {
+            entries.add(new BarEntry(i++, categoryTotals.get(type)));
         }
 
         BarDataSet dataSet = new BarDataSet(entries, "Expenses");
         dataSet.setColors(colors);
-        dataSet.setValueTextSize(12f);
-
         BarData data = new BarData(dataSet);
         barChart.setData(data);
-        barChart.invalidate(); // Refresh the chart
+        barChart.invalidate();
     }
+
 }
+

@@ -1,30 +1,33 @@
 <resources>
     <string name="app_name">Caclulator</string>
     <!-- Expense Card -->
-    <string name="label_type">Type: %1$s</string>
-    <string name="label_name">Name: %1$s</string>
-    <string name="label_cost">Cost: %1$s</string>
+    <string name="label_type">Típus: %1$s</string>
+    <string name="label_name">Név: %1$s</string>
+    <string name="label_cost">Költség: %1$s</string>
+
     <!-- Field trip data -->
-    <string name="total_cost">Total Price: %1$.2f</string>
-    <string name="months_left">Months left: %1$d</string>
-    <string name="participants">Participants: %1$d</string>
-    <string name="monthly_per_person">Monthly Per person: %1$.2f</string>
+    <string name="total_cost">Teljes ár: %1$.2f</string>
+    <string name="months_left">Hátralévő hónapok: %1$d</string>
+    <string name="participants">Résztvevők: %1$d</string>
+    <string name="monthly_per_person">Havi hozzájárulás személyenként: %1$.2f</string>
+
     <!-- Strings and hints -->
-    <string name="analysis">Analysis</string>
-    <string name="expenses">Expenses</string>
-    <string name="field_trip">Field Trip</string>
-    <string name="field_trip_details">Field Trip Details</string>
-    <string name="number_of_students">Number of Students</string>
-    <string name="number_of_teachers">Number of Teachers</string>
-    <string name="date_of_trip">Date of Trip</string>
-    <string name="add_expense">Add Expense</string>
-    <string name="transportation">Transportation</string>
-    <string name="cost">Cost</string>
-    <string name="discount">Discount</string>
-    <string name="discount_with_percentage">Discount %</string>
-    <string name="ticket_name">Ticket name</string>
-    <string name="accommodation">Accommodation</string>
-    <string name="remove">Remove</string>
+    <string name="analysis">Elemzés</string>
+    <string name="expenses">Kiadások</string>
+    <string name="field_trip">Osztálykirándulás</string>
+    <string name="field_trip_details">Kirándulás deleterious</string>
+    <string name="number_of_students">Diákok száma</string>
+    <string name="number_of_teachers">Tanárkísérők száma</string>
+    <string name="date_of_trip">Kirándulás datum</string>
+    <string name="add_expense">Kidnaps hozzáadása</string>
+    <string name="transportation">Utazás</string>
+    <string name="cost">Költség</string>
+    <string name="discount">Kedvezmény</string>
+    <string name="discount_with_percentage">Kedvezmény %</string>
+    <string name="ticket_name">Jegy neve</string>
+    <string name="accommodation">Szállás</string>
+    <string name="remove">Eltávolítás</string>
+
     <!-- Calculator -->
     <string name="_7">7</string>
     <string name="_8">8</string>
@@ -37,11 +40,12 @@
     <string name="_3">3</string>
     <string name="_0">0</string>
     <string name="backslash">⌫</string>
-    <string name="done">Done</string>
+    <string name="done">Enter</string>
 
-    <string name="all_data_summary">All Data Summary</string>
-    <string name="spending_insights">Spending Insights</string>
-    <string name="category_breakdown">Category Breakdown</string>
+    <string name="all_data_summary">Teljes adatösszesítés</string>
+    <string name="spending_insights">Kiadási statisztikák</string>
+    <string name="category_breakdown">Kategória bontás</string>
+
     <string-array name="expense_types">
         <item>Travel</item>
         <item>Accommodation</item>

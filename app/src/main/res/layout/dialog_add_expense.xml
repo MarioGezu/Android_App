@@ -52,4 +52,8 @@
             android:textAllCaps="false"
             app:cornerRadius="12dp"/>
     </LinearLayout>
+    <include
+        android:id="@+id/customKeyboardInclude"
+        layout="@layout/keyboard_calculator"
+        android:visibility="gone" />
 </com.google.android.material.card.MaterialCardView>

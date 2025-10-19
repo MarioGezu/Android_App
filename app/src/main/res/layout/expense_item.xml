@@ -25,6 +25,7 @@
             android:textStyle="bold"
             android:textColor="@color/title_fg"
             android:textSize="23sp"
+
             android:background="@color/title_bg"
             android:padding="8dp"
             android:gravity="center_vertical"
