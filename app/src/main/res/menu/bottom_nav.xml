@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_field_trip"
+        android:icon="@drawable/ic_bus"
+        android:title="@string/field_trip" />
+    <item
+        android:id="@+id/nav_expenses"
+        android:icon="@drawable/ic_ticket"
+        android:title="@string/expenses" />
+    <item
+        android:id="@+id/nav_analysis"
+        android:icon="@drawable/ic_hotel"
+        android:title="@string/analysis" />
+</menu>
